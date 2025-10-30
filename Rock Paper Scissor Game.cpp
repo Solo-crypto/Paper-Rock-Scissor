@@ -1,31 +1,24 @@
-﻿#include <iostream>
+#include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <string>
+
 using namespace std;
 
 int rule(char p, char c) {
-    if (p == c) {
-        return 0;
+    if (p != 'r' && p != 'p' && p != 's') {
+        return 2;
     }
 
-    if (p == 'r' && c == 'p') {
-        return -1;
-    }
-    else if (p == 's' && c == 'p') {
-        return 1;
-    }
-    else if (p == 'p' && c == 'r') {
-        return 1;
-    }
-    else if (p == 's' && c == 'r') {
-        return -1;
-    }
-    else if (p == 'r' && c == 's') {
-        return 1;
-    }
-    else if (p == 'p' && c == 's') {
-        return -1;
-    }
+    if (p == c) return 0;
+    if (p == 'r' && c == 'p') return -1;
+    if (p == 's' && c == 'p') return 1;
+    if (p == 'p' && c == 'r') return 1;
+    if (p == 's' && c == 'r') return -1;
+    if (p == 'r' && c == 's') return 1;
+    if (p == 'p' && c == 's') return -1;
+
+    return 0;
 }
 
 int main() {
@@ -33,23 +26,24 @@ int main() {
     char computer;
     char player;
     char playmore;
-    cout << "\t\t\t\t";
+
     for (int i = 0; i < 50; i++) {
         cout << "-";
     }
     cout << endl;
-    cout << "\t\t\t\t";
-    cout << "\t Welcome to Rock, Paper and Scissors Game" << endl;
-    cout << "\t\t\t\t";
+
+    cout << "     Welcome to Rock, Paper and Scissors Game" << endl;
+
     for (int i = 0; i < 50; i++) {
         cout << "-";
     }
     cout << endl;
-    cout << "\t\t\t\t";
-    cout << "\t Note: " << endl;
-    cout << "\t\t\t\t";
-    cout << "\t\t r : Rock" << endl << "\t\t\t\t" << "\t\t p - Paper" << endl << "\t\t\t\t" << "\t\t scissor" << endl << "\t\t\t\t" << endl << endl;
-    cout << "\t\t\t\t";
+
+    cout << "Note: " << endl;
+    cout << "  r - Rock" << endl;
+    cout << "  p - Paper" << endl;
+    cout << "  s - Scissor" << endl << endl;
+
     for (int i = 0; i < 50; i++) {
         cout << "-";
     }
@@ -71,28 +65,28 @@ int main() {
         {
             computer = 'p';
         }
-        cout << "\t\t\t\t";
+
         cout << "Enter your choice: ";
         cin >> player;
         int result = rule(player, computer);
-        if (result == 1) {
-            cout << "\t\t\t\t";
-            cout << "You won! Hurray" << endl;
+
+        if (result == 2) {
+            cout << "Invalid choice! Please enter 'r', 'p', or 's'." << endl;
+        }
+        else if (result == 1) {
+            cout << "You won!" << endl;
         }
         else if (result == -1) {
-            cout << "\t\t\t\t";
-            cout << "You lose! Bad Luck" << endl;
+            cout << "You lose!" << endl;
         }
-        else {
-            cout << "\t\t\t\t";
-            cout << "Woah! That's Tie!" << endl;
+        else if (result == 0) {
+            cout << "That's a Tie!" << endl;
         }
-        cout << "\t\t\t\t";
+
         cout << "Do you want to Play Again?" << endl;
-        cout << "\t\t\t\t";
-        cout << "Note: Press 'n' to exit! Press Anything to continue: ";
+        cout << "Press 'q' + Enter to continue or 'n' + Enter to exit: ";
         cin >> playmore;
-        cout << "\t\t\t\t";
+
         for (int i = 0; i < 50; i++) {
             cout << "-";
         }
